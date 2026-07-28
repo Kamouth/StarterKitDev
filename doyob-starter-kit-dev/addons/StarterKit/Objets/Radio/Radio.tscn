@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c1guiyaadbok8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bais7"]
+size = Vector3(0.2, 0.12, 0.06)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bais7"]
+radius = 0.003
+height = 0.2
+
+[node name="Radio" type="Node3D" unique_id=119511985]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=881309292]
+mesh = SubResource("BoxMesh_bais7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1675446582]
+transform = Transform3D(0.9523796, 0.30491495, 0, -0.30491495, 0.9523796, 0, 0, 0, 1, -0.054747067, 0.15082823, -0.017949224)
+mesh = SubResource("CapsuleMesh_bais7")

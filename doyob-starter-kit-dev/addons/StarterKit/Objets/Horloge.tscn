@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d4hnpybclkmyj"]
+
+[ext_resource type="Script" uid="uid://d07wq05euyx3v" path="res://Objets/Horloge/horloge.gd" id="1_ywm84"]
+[ext_resource type="AudioStream" uid="uid://dqlrwri7m0hh6" path="res://Objets/Horloge/tick_1.wav" id="2_fh7vr"]
+[ext_resource type="Texture2D" uid="uid://cyuevk17pfxuo" path="res://Objets/Horloge/horloge.png" id="3_coukf"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_bais7"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_d4f1g"]
+transparency = 1
+albedo_texture = ExtResource("3_coukf")
+
+[node name="Horloge" type="Node3D" unique_id=961985600]
+script = ExtResource("1_ywm84")
+tickSample = ExtResource("2_fh7vr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1986442086]
+mesh = SubResource("QuadMesh_bais7")
+surface_material_override/0 = SubResource("ORMMaterial3D_d4f1g")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1630147344]
+volume_db = 22.434
+unit_size = 23.48

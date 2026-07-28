@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bbl8tone4p77g"]
+
+[ext_resource type="PackedScene" uid="uid://d4hnpybclkmyj" path="res://addons/starter_kit/addons/StarterKit/Objets/Horloge.tscn" id="1_ik23a"]
+[ext_resource type="Script" uid="uid://xhb7dw5bpn2h" path="res://addons/starter_kit/addons/StarterKit/FPS/FPSPlayer.gd" id="2_0i2u8"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_bais7"]
+size = Vector2(25, 25)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bais7"]
+radius = 0.395
+height = 1.49
+
+[node name="ZooFps" type="Node3D" unique_id=247484102]
+
+[node name="Horloge" parent="." unique_id=961985600 instance=ExtResource("1_ik23a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Sol" type="MeshInstance3D" parent="." unique_id=615311922]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("QuadMesh_bais7")
+
+[node name="FpsPlayer" type="CharacterBody3D" parent="." unique_id=1979904628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1770568, 0.9498167, 2.6717758)
+script = ExtResource("2_0i2u8")
+
+[node name="Corps" type="CSGSphere3D" parent="FpsPlayer" unique_id=1419577200]
+transform = Transform3D(0.6, 0, 0, 0, 0.799, 0, 0, 0, 0.4, 0, 0, 0)
+radius = 0.67
+rings = 12
+
+[node name="Tête" type="CSGSphere3D" parent="FpsPlayer" unique_id=11039501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67927706, 0)
+radius = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="FpsPlayer" unique_id=1814148599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6868515, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FpsPlayer" unique_id=128470541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19253075, 0)
+shape = SubResource("CapsuleShape3D_bais7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1617921802]
+transform = Transform3D(1, 0, 0, 0, 0.8700439, 0.49297425, 0, -0.49297425, 0.8700439, 0, 2.8313026, 5.109436)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=943888027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6787109, -0.4434569, 2.1219177)
+use_collision = true
+size = Vector3(9.599609, 1, 16.371643)
