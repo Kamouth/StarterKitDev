@@ -1,3 +1,6 @@
 [submodule "doyob-starter-kit-dev/addons/starter_kit"]
 	path = doyob-starter-kit-dev/addons/starter_kit
 	url = https://github.com/Kamouth/StarterKit.git
+[submodule "doyob-starter-kit-dev/addons/GodotSteamAudio"]
+	path = doyob-starter-kit-dev/addons/GodotSteamAudio
+	url = https://github.com/stechyo/godot-steam-audio.git
