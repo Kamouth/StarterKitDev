@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bbl8tone4p77g"]
 
-[ext_resource type="PackedScene" uid="uid://d4hnpybclkmyj" path="res://addons/starter_kit/addons/StarterKit/Objets/Horloge.tscn" id="1_ik23a"]
-[ext_resource type="Script" uid="uid://xhb7dw5bpn2h" path="res://addons/starter_kit/addons/StarterKit/FPS/FPSPlayer.gd" id="2_0i2u8"]
+[ext_resource type="PackedScene" uid="uid://d4hnpybclkmyj" path="res://addons/StarterKit/Objets/Horloge.tscn" id="1_ik23a"]
+[ext_resource type="Script" uid="uid://xhb7dw5bpn2h" path="res://addons/StarterKit/FPS/FPSPlayer.gd" id="2_0i2u8"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_bais7"]
 size = Vector2(25, 25)
@@ -39,6 +39,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6868515, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FpsPlayer" unique_id=128470541]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19253075, 0)
 shape = SubResource("CapsuleShape3D_bais7")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="FpsPlayer" unique_id=607092665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69265294, 0)
+current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1617921802]
 transform = Transform3D(1, 0, 0, 0, 0.8700439, 0.49297425, 0, -0.49297425, 0.8700439, 0, 2.8313026, 5.109436)
