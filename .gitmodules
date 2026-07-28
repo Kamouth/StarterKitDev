@@ -1,0 +1,3 @@
+[submodule "doyob-starter-kit-dev/addons/starter_kit"]
+	path = doyob-starter-kit-dev/addons/starter_kit
+	url = https://github.com/Kamouth/StarterKit.git
