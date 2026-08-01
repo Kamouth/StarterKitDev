@@ -3,12 +3,21 @@
 [ext_resource type="Script" uid="uid://d07wq05euyx3v" path="res://addons/StarterKit/Objets/Horloge/horloge.gd" id="1_ywm84"]
 [ext_resource type="AudioStream" uid="uid://dqlrwri7m0hh6" path="res://addons/StarterKit/Objets/Horloge/tick_1.wav" id="2_fh7vr"]
 [ext_resource type="Texture2D" uid="uid://cyuevk17pfxuo" path="res://addons/StarterKit/Objets/Horloge/horloge.png" id="3_coukf"]
+[ext_resource type="AudioStream" uid="uid://c8dn6xjroiajv" path="res://addons/StarterKit/Objets/Horloge/tick_3.wav" id="4_3qru2"]
+[ext_resource type="AudioStream" uid="uid://crgjnomgv7hky" path="res://addons/StarterKit/Objets/Horloge/tick_4.wav" id="5_f5ff0"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_bais7"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_d4f1g"]
 transparency = 1
 albedo_texture = ExtResource("3_coukf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_te20r"]
+playback_mode = 1
+streams_count = 3
+stream_0/stream = ExtResource("2_fh7vr")
+stream_1/stream = ExtResource("4_3qru2")
+stream_2/stream = ExtResource("5_f5ff0")
 
 [node name="Horloge" type="Node3D" unique_id=961985600]
 script = ExtResource("1_ywm84")
@@ -19,6 +28,7 @@ mesh = SubResource("QuadMesh_bais7")
 surface_material_override/0 = SubResource("ORMMaterial3D_d4f1g")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1630147344]
-stream = ExtResource("2_fh7vr")
-volume_db = 22.434
-unit_size = 23.48
+stream = SubResource("AudioStreamRandomizer_te20r")
+unit_size = 1.0
+max_db = -1.0
+attenuation_filter_cutoff_hz = 3078.0

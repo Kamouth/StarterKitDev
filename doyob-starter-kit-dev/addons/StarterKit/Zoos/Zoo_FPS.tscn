@@ -2,27 +2,45 @@
 
 [ext_resource type="PackedScene" uid="uid://d4hnpybclkmyj" path="res://addons/StarterKit/Objets/Horloge.tscn" id="1_ik23a"]
 [ext_resource type="Script" uid="uid://xhb7dw5bpn2h" path="res://addons/StarterKit/FPS/FPSPlayer.gd" id="2_0i2u8"]
+[ext_resource type="Script" uid="uid://bod8gyq6si4se" path="res://addons/StarterKit/Zoos/AmbientOcclusionSamplerNode.gd" id="3_lyqsk"]
+[ext_resource type="AudioStream" uid="uid://dqlrwri7m0hh6" path="res://addons/StarterKit/Objets/Horloge/tick_1.wav" id="4_ayxja"]
+[ext_resource type="PackedScene" uid="uid://cb24i4db7mo0r" path="res://addons/StarterKit/Objets/Arbre/Arbre.tscn" id="4_cottf"]
+[ext_resource type="AudioStream" uid="uid://dqhx6l6xn1dbi" path="res://addons/StarterKit/Audio/683892__rico_casazza__divoka-sarka-forest-quiet-ambiance.wav" id="5_lt8ol"]
+[ext_resource type="AudioStream" uid="uid://s2traij3twbt" path="res://addons/StarterKit/Objets/Horloge/tick_2.wav" id="5_te20r"]
+[ext_resource type="AudioStream" uid="uid://c8dn6xjroiajv" path="res://addons/StarterKit/Objets/Horloge/tick_3.wav" id="6_27p4j"]
+[ext_resource type="AudioStream" uid="uid://crgjnomgv7hky" path="res://addons/StarterKit/Objets/Horloge/tick_4.wav" id="7_ev1nn"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_bais7"]
-size = Vector2(25, 25)
+[sub_resource type="Environment" id="Environment_bais7"]
+ssao_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_d4f1g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bais7"]
 radius = 0.395
 height = 1.49
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lt8ol"]
+streams_count = 4
+stream_0/stream = ExtResource("4_ayxja")
+stream_1/stream = ExtResource("5_te20r")
+stream_2/stream = ExtResource("6_27p4j")
+stream_3/stream = ExtResource("7_ev1nn")
+
 [node name="ZooFps" type="Node3D" unique_id=247484102]
 
-[node name="Horloge" parent="." unique_id=961985600 instance=ExtResource("1_ik23a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="Sol" type="MeshInstance3D" parent="." unique_id=615311922]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-visible = false
-mesh = SubResource("QuadMesh_bais7")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=439649730]
+environment = SubResource("Environment_bais7")
+camera_attributes = SubResource("CameraAttributesPractical_d4f1g")
 
 [node name="FpsPlayer" type="CharacterBody3D" parent="." unique_id=1979904628]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1770568, 0.9498167, 2.6717758)
 script = ExtResource("2_0i2u8")
+
+[node name="Footsteps" type="Node3D" parent="FpsPlayer" unique_id=1415122126]
+
+[node name="AmbientOcclusionSamplerNode3D" type="Node3D" parent="FpsPlayer" unique_id=255607255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3444612, 0)
+script = ExtResource("3_lyqsk")
 
 [node name="Corps" type="CSGSphere3D" parent="FpsPlayer" unique_id=1419577200]
 transform = Transform3D(0.6, 0, 0, 0, 0.799, 0, 0, 0, 0.4, 0, 0, 0)
@@ -44,10 +62,106 @@ shape = SubResource("CapsuleShape3D_bais7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69265294, 0)
 current = true
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="FpsPlayer" unique_id=1023229081]
+
+[node name="Sol" type="CSGBox3D" parent="." unique_id=943888027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5211954, -0.5, -2.5638218)
+use_collision = true
+size = Vector3(70, 1, 69)
+
+[node name="Horloge" parent="." unique_id=961985600 instance=ExtResource("1_ik23a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6807108, 2, 1.0585508)
+tickPeriodMillseconds = 2000
+tickSample = SubResource("AudioStreamRandomizer_lt8ol")
+
+[node name="Mur" type="CSGBox3D" parent="." unique_id=1006012169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 0)
+use_collision = true
+size = Vector3(7, 3, 1)
+
+[node name="Toit" type="CSGBox3D" parent="." unique_id=1651678886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.5, -3)
+use_collision = true
+size = Vector3(7, 1, 7)
+
+[node name="Mur2" type="CSGBox3D" parent="." unique_id=1784143526]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 1.5, -3)
+use_collision = true
+size = Vector3(7, 3, 1)
+
+[node name="Mur3" type="CSGBox3D" parent="." unique_id=1168826097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, -6)
+use_collision = true
+size = Vector3(7, 3, 1)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1617921802]
 transform = Transform3D(1, 0, 0, 0, 0.8700439, 0.49297425, 0, -0.49297425, 0.8700439, 0, 2.8313026, 5.109436)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=943888027]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6787109, -0.4434569, 2.1219177)
-use_collision = true
-size = Vector3(9.599609, 1, 16.371643)
+[node name="Bois" type="Node3D" parent="." unique_id=727306611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.106044, 0, 7.928545)
+
+[node name="Arbre2" parent="Bois" unique_id=1637380231 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2365556, -0.080830336, 2.1728964)
+
+[node name="Arbre5" parent="Bois" unique_id=363675574 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7796626, -0.080830336, -0.010774612)
+
+[node name="Arbre3" parent="Bois" unique_id=844750757 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8644285, -0.08083129, 2.263486)
+
+[node name="Arbre4" parent="Bois" unique_id=2060023889 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4971533, -0.08083129, -0.9936266)
+
+[node name="Arbre" parent="Bois" unique_id=1399182817 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2080636, -0.08082938, -1.0085306)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Bois" unique_id=33954795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4821992, 2.7024388, 2.611043)
+stream = ExtResource("5_lt8ol")
+autoplay = true
+
+[node name="Bois2" type="Node3D" parent="." unique_id=1259178043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.106044, 0, -12.091578)
+
+[node name="Arbre2" parent="Bois2" unique_id=687156296 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2365556, -0.13309598, 2.1728964)
+
+[node name="Arbre5" parent="Bois2" unique_id=1500397665 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7796626, -0.13309598, -0.010774612)
+
+[node name="Arbre3" parent="Bois2" unique_id=1288435480 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8644285, -0.13309693, 2.263486)
+
+[node name="Arbre4" parent="Bois2" unique_id=1207383957 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4971533, -0.13309693, -0.9936266)
+
+[node name="Arbre" parent="Bois2" unique_id=346771748 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2080636, -0.13309503, -1.0085306)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Bois2" unique_id=1393178870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4821992, 2.7024388, 2.611043)
+stream = ExtResource("5_lt8ol")
+autoplay = true
+
+[node name="Bois3" type="Node3D" parent="." unique_id=445412251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.799937, 0, -3.9209194)
+
+[node name="Arbre2" parent="Bois3" unique_id=2019416575 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.236556, -0.027157784, 2.1728964)
+
+[node name="Arbre5" parent="Bois3" unique_id=807646355 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7796621, -0.027157784, -0.010774612)
+
+[node name="Arbre3" parent="Bois3" unique_id=97216359 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8644285, -0.027158737, 2.263486)
+
+[node name="Arbre4" parent="Bois3" unique_id=1611715751 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4971533, -0.027158737, -0.9936266)
+
+[node name="Arbre" parent="Bois3" unique_id=1285687154 instance=ExtResource("4_cottf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2080641, -0.02715683, -1.0085306)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Bois3" unique_id=297844686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4821992, 2.7024388, 2.611043)
+stream = ExtResource("5_lt8ol")
+autoplay = true
