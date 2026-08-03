@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d4hnpybclkmyj" path="res://addons/StarterKit/Objets/Horloge.tscn" id="1_ik23a"]
 [ext_resource type="Script" uid="uid://xhb7dw5bpn2h" path="res://addons/StarterKit/FPS/FPSPlayer.gd" id="2_0i2u8"]
 [ext_resource type="Script" uid="uid://bod8gyq6si4se" path="res://addons/StarterKit/Zoos/AmbientOcclusionSamplerNode.gd" id="3_lyqsk"]
+[ext_resource type="Shader" uid="uid://3uv02lk71n7l" path="res://addons/StarterKit/Grid_Shader.gdshader" id="3_te20r"]
 [ext_resource type="AudioStream" uid="uid://dqlrwri7m0hh6" path="res://addons/StarterKit/Objets/Horloge/tick_1.wav" id="4_ayxja"]
 [ext_resource type="PackedScene" uid="uid://cb24i4db7mo0r" path="res://addons/StarterKit/Objets/Arbre/Arbre.tscn" id="4_cottf"]
 [ext_resource type="AudioStream" uid="uid://dqhx6l6xn1dbi" path="res://addons/StarterKit/Audio/683892__rico_casazza__divoka-sarka-forest-quiet-ambiance.wav" id="5_lt8ol"]
@@ -18,6 +19,30 @@ ssao_enabled = true
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bais7"]
 radius = 0.395
 height = 1.49
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1gbu3"]
+render_priority = 0
+shader = ExtResource("3_te20r")
+shader_parameter/world_uv = true
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 8
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.25
+shader_parameter/roughness = 0.75
+shader_parameter/grid_scale = 1.0
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.59408593, 0.868405, 0.767682, 1)
+shader_parameter/inside_scale = 1.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.1
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lt8ol"]
 streams_count = 4
@@ -67,7 +92,8 @@ current = true
 [node name="Sol" type="CSGBox3D" parent="." unique_id=943888027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5211954, -0.5, -2.5638218)
 use_collision = true
-size = Vector3(70, 1, 69)
+size = Vector3(100, 1, 100)
+material = SubResource("ShaderMaterial_1gbu3")
 
 [node name="Horloge" parent="." unique_id=961985600 instance=ExtResource("1_ik23a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6807108, 2, 1.0585508)
