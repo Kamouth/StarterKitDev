@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://qujrt0ahgyv2"]
+
+[node name="Table" type="Node3D" unique_id=827802838]
+
+[node name="Plateau" type="CSGBox3D" parent="." unique_id=1510124330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+size = Vector3(1.7, 0.05, 0.8)
+
+[node name="Pied" type="CSGBox3D" parent="." unique_id=616516355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7154038, 0.4, 0.26243353)
+size = Vector3(0.05, 0.8, 0.05)
+
+[node name="Pied2" type="CSGBox3D" parent="." unique_id=810613032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.715, 0.4, 0.262)
+size = Vector3(0.05, 0.8, 0.05)
+
+[node name="Pied3" type="CSGBox3D" parent="." unique_id=1190529458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.715, 0.4, -0.262)
+size = Vector3(0.05, 0.8, 0.05)
+
+[node name="Pied4" type="CSGBox3D" parent="." unique_id=1402105284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.715, 0.4, -0.262)
+size = Vector3(0.05, 0.8, 0.05)
